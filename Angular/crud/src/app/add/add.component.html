@@ -1,0 +1,73 @@
+<form [formGroup]="profileForm" class="mt-5 ms-5">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      formControlName="name"
+      class="form-control w-50"
+      id="name"
+    />
+  </div>
+  <div
+    *ngIf="
+      profileForm.controls['name'].invalid &&
+      (profileForm.controls['name'].dirty ||
+        profileForm.controls['name'].touched)
+    "
+    class="alert alert-danger"
+  >
+    <div *ngIf="profileForm.controls['name'].errors?.required">
+      Name is required.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="age" class="form-label">Age</label>
+    <input
+      type="text"
+      formControlName="age"
+      class="form-control w-50"
+      id="age"
+    />
+  </div>
+  <div
+    *ngIf="
+      profileForm.controls['age'].invalid &&
+      (profileForm.controls['age'].dirty || profileForm.controls['age'].touched)
+    "
+    class="alert alert-danger"
+  >
+    <div *ngIf="profileForm.controls['age'].errors?.required">
+      Age is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="color" class="form-label">Color</label>
+    <input
+      type="text"
+      formControlName="color"
+      class="form-control w-50"
+      id="Color"
+    />
+  </div>
+  <div
+    *ngIf="
+      profileForm.controls['color'].invalid &&
+      (profileForm.controls['color'].dirty ||
+        profileForm.controls['color'].touched)
+    "
+    class="alert alert-danger"
+  >
+    <div *ngIf="profileForm.controls['color'].errors?.required">
+      Color is required.
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    (click)="addToDatabase(profileForm.value)"
+    [disabled]="profileForm.pristine || profileForm.invalid"
+  >
+    {{ dataId == null ? "Submit" : "Update" }}
+  </button>
+</form>
